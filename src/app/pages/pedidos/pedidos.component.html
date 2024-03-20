@@ -19,9 +19,9 @@
                     <div class="flex py-[24px] px-[64px] justify-between items-center self-stretch">
                         <div
                             class="flex min-w-[230px] max-w-[230px] justify-center items-center gap-[10px] self-stretch">
-                            <p class="text-[32px] capitalize">Orden</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="39" viewBox="0 0 40 39"
-                                fill="none">
+                            <p class="text-[32px] capitalize">Pedido</p>
+                            <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="40" height="39"
+                                viewBox="0 0 40 39" fill="none">
                                 <path
                                     d="M21.625 8.125C21.625 7.22754 20.8975 6.5 20 6.5C19.1025 6.5 18.375 7.22754 18.375 8.125V26.9519L9.77405 18.351C9.13945 17.7163 8.11055 17.7163 7.47595 18.351C6.84135 18.9856 6.84135 20.0144 7.47595 20.649L18.851 32.024C19.4856 32.6587 20.5144 32.6587 21.149 32.024L32.524 20.649C33.1587 20.0144 33.1587 18.9856 32.524 18.351C31.8894 17.7163 30.8606 17.7163 30.226 18.351L21.625 26.9519V8.125Z"
                                     fill="#2D3648" />
@@ -30,8 +30,8 @@
                         <div
                             class="flex min-w-[230px] max-w-[230px] justify-center items-center gap-[10px] self-stretch">
                             <p class="text-[32px] capitalize">Tienda</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="39" viewBox="0 0 40 39"
-                                fill="none">
+                            <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="40" height="39"
+                                viewBox="0 0 40 39" fill="none">
                                 <path
                                     d="M21.149 6.97595C20.5144 6.34135 19.4856 6.34135 18.851 6.97595L7.47595 18.351C6.84135 18.9856 6.84135 20.0144 7.47595 20.649C8.11055 21.2837 9.13945 21.2837 9.77405 20.649L18.375 12.0481V30.875C18.375 31.7725 19.1025 32.5 20 32.5C20.8975 32.5 21.625 31.7725 21.625 30.875V12.0481L30.226 20.649C30.8606 21.2837 31.8894 21.2837 32.524 20.649C33.1587 20.0144 33.1587 18.9856 32.524 18.351L21.149 6.97595Z"
                                     fill="#2D3648" fill-opacity="0.5" />
@@ -40,8 +40,8 @@
                         <div
                             class="flex min-w-[230px] max-w-[230px] justify-center items-center gap-[10px] self-stretch">
                             <p class="text-[32px] capitalize">Fecha</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="39" viewBox="0 0 40 39"
-                                fill="none">
+                            <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="40" height="39"
+                                viewBox="0 0 40 39" fill="none">
                                 <path
                                     d="M21.149 6.97595C20.5144 6.34135 19.4856 6.34135 18.851 6.97595L7.47595 18.351C6.84135 18.9856 6.84135 20.0144 7.47595 20.649C8.11055 21.2837 9.13945 21.2837 9.77405 20.649L18.375 12.0481V30.875C18.375 31.7725 19.1025 32.5 20 32.5C20.8975 32.5 21.625 31.7725 21.625 30.875V12.0481L30.226 20.649C30.8606 21.2837 31.8894 21.2837 32.524 20.649C33.1587 20.0144 33.1587 18.9856 32.524 18.351L21.149 6.97595Z"
                                     fill="#2D3648" fill-opacity="0.5" />
@@ -51,13 +51,14 @@
                     <!-- row -->
                     <app-pedidos-pendientes-item
                         class="flex w-full  py-[17px] px-[64px] justify-between items-center border-t-[1px] border-[#B1B1B1] hover:bg-selectedItem cursor-pointer"
-                        [pedido]="pedido" *ngFor="let pedido of pedidos" (click)="goToDetallePedido(pedido)"></app-pedidos-pendientes-item>
+                        [pedido]="pedido" *ngFor="let pedido of pedidos"
+                        (click)="goToDetallePedido(pedido)"></app-pedidos-pendientes-item>
                 </div>
             </div>
         </div>
         <!-- pagination -->
         <div class="flex p-[10px] justify-center gap-[10px] self-stretch items-center">
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
                     <path
                         d="M20.1196 9.03623C20.7379 8.4179 20.7379 7.41539 20.1196 6.79706C19.5012 6.17873 18.4987 6.17873 17.8804 6.79706L6.79706 17.8804C6.17873 18.4987 6.17873 19.5012 6.79706 20.1196L17.8804 31.2029C18.4987 31.8212 19.5012 31.8212 20.1196 31.2029C20.7379 30.5846 20.7379 29.5821 20.1196 28.9637L11.7392 20.5833L30.0833 20.5833C30.9578 20.5833 31.6666 19.8744 31.6666 19C31.6666 18.1255 30.9578 17.4166 30.0833 17.4166L11.7392 17.4166L20.1196 9.03623Z"
@@ -65,42 +66,47 @@
                 </svg>
             </div>
             <div
-                class="flex bg-primary rounded-[5px] w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px]">
+                class="flex bg-primary rounded-[5px] w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px] cursor-pointer">
                 <p class="text-[#FFFF] text-[20px]">
                     1
                 </p>
             </div>
-            <div class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px]">
+            <div
+                class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px] cursor-pointer">
                 <p class="text-primary font-medium text-[20px]">
                     2
                 </p>
             </div>
-            <div class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px]">
+            <div
+                class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px] cursor-pointer">
                 <p class="text-primary font-medium text-[20px]">
                     3
                 </p>
             </div>
-            <div class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px]">
+            <div
+                class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px] cursor-pointer">
                 <p class="text-primary font-medium text-[20px]">
                     4
                 </p>
             </div>
-            <div class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px]">
+            <div
+                class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px] cursor-pointer">
                 <p class="text-primary font-medium text-[20px]">
                     5
                 </p>
             </div>
-            <div class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px]">
+            <div class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px] ">
                 <p class="text-primary font-medium text-[20px]">
                     ...
                 </p>
             </div>
-            <div class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px]">
+            <div
+                class="flex  w-[38px] h-[38px] py-[5px] px-[10px] flex-col justify-center items-center gap-[10px] cursor-pointer">
                 <p class="text-primary font-medium text-[20px]">
                     8
                 </p>
             </div>
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
                     <path
                         d="M17.8804 6.79706C18.4987 6.17873 19.5012 6.17873 20.1196 6.79706L31.2029 17.8804C31.8212 18.4987 31.8212 19.5012 31.2029 20.1196L20.1196 31.2029C19.5012 31.8212 18.4987 31.8212 17.8804 31.2029C17.2621 30.5846 17.2621 29.5821 17.8804 28.9637L26.2608 20.5833H7.91665C7.0422 20.5833 6.33331 19.8744 6.33331 19C6.33331 18.1255 7.0422 17.4166 7.91665 17.4166H26.2608L17.8804 9.03623C17.2621 8.4179 17.2621 7.41539 17.8804 6.79706Z"

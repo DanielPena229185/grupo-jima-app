@@ -1,19 +1,20 @@
 <div class="flex  w-[231px] h-screen py-[24px] pr-[5px] pl-0 flex-col justify-between items-center shrink-0">
     <div class="flex flex-col items-start self-stretch">
         <div class="flex py-[18px] px-0 justify-center items-center gap-[10px] self-stretch">
-            <img src="{{IMG_GRUPO_JIMA}}" alt="logo" class="rounded-full w-32 h-32">
-            <!-- todo add border n shadow -->
+            <img src="{{IMG_GRUPO_JIMA}}" alt="logo" class="rounded-[10px] w-32 h-32 shadow-2xl">
         </div>
         <!-- item sidebar -->
-        <button class="flex w-[226px] py-[10px] px-[20px] items-center gap-[13px]  hover:bg-selectedItem" *ngFor="let opcion of opcionesPaginas" (click)="goToPage(opcion)">
+        <button class="flex w-[226px] py-[10px] px-[20px] items-center gap-[13px]  hover:bg-selectedItem"
+            *ngFor="let opcion of opcionesPaginas" (click)="goToPage(opcion)">
             <img src="{{opcion.icono}}" alt="{{opcion.nombre}}">
             <p class="font-primary text-base font-normal">
                 {{opcion.nombre}}
             </p>
         </button>
     </div>
-    <div class="flex flex-col items-center gap-[24px] self-stretch">
-        <button class="flex w-[226px] py-[10px] px-[20px] items-center gap-[13px] hover:bg-selectedItem" *ngFor="let opcion of opcionesExtra" (click)="goToPage(opcion)">
+    <div class="flex flex-col items-center gap-[24px] self-stretch ">
+        <button class="flex w-[226px] py-[10px] px-[20px] items-center gap-[13px] hover:bg-selectedItem"
+            *ngFor="let opcion of opcionesExtra" (click)="goToPage(opcion)">
             <img src="{{opcion.icono}}" alt="{{opcion.nombre}}">
             <p class="font-primary text-base font-normal">
                 {{opcion.nombre}}

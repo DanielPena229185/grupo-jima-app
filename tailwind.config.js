@@ -5,8 +5,9 @@ module.exports = {
     extend: {},
     colors:{
       primary:'#01A85A',
-      ligthbg:'#F4F3F3',
-      selectedItem: '#F5F5F5',
+      primaryLight:'#38b57a',
+      lightbg:'#F4F3F3',
+      selectedItem: '#e8e8e8',
     }
   },
   plugins: [],
