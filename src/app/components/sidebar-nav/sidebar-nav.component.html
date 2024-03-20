@@ -1,0 +1,23 @@
+<div class="flex  w-[231px] h-screen py-[24px] pr-[5px] pl-0 flex-col justify-between items-center shrink-0">
+    <div class="flex flex-col items-start self-stretch">
+        <div class="flex py-[18px] px-0 justify-center items-center gap-[10px] self-stretch">
+            <img src="" alt="logo" class="">
+            <!-- todo add border n shadow -->
+        </div>
+        <!-- item sidebar -->
+        <button class="flex w-[226px] py-[10px] px-[20px] items-center gap-[13px]  hover:bg-selectedItem" *ngFor="let opcion of opcionesPaginas" (click)="goToPage(opcion)">
+            <img src="{{opcion.icono}}" alt="{{opcion.nombre}}">
+            <p class="font-primary text-base font-normal">
+                {{opcion.nombre}}
+            </p>
+        </button>
+    </div>
+    <div class="flex flex-col items-center gap-[24px] self-stretch">
+        <button class="flex w-[226px] py-[10px] px-[20px] items-center gap-[13px] hover:bg-selectedItem" *ngFor="let opcion of opcionesExtra" (click)="goToPage(opcion)">
+            <img src="{{opcion.icono}}" alt="{{opcion.nombre}}">
+            <p class="font-primary text-base font-normal">
+                {{opcion.nombre}}
+            </p>
+        </button>
+    </div>
+</div>
