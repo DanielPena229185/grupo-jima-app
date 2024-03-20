@@ -1,3 +1,4 @@
 export const enviroment = {
-    icons: '/assets/icons/'
+    icons: '/assets/icons',
+    imagenes: '/assets/imagenes'
 }
