@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './pedidos-pendientes-item.component.css'
 })
 export class PedidosPendientesItemComponent implements OnInit{
+  
   @Input() pedido: PedidoDTO;
   
   ngOnInit() {

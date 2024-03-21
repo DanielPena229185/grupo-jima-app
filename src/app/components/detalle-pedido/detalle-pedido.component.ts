@@ -1,51 +1,47 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PedidoDTO } from './detalle-pedido.types';
 import { ToastNotificationComponent } from '../toast-notification/toast-notification.component';
+import { InformacionPedidoComponent } from '../informacion-pedido/informacion-pedido.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DetallePedidoService } from './detalle-pedido.service';
+import { PaqueteDTO, PedidoDTO } from './detalle-pedido.types';
 
 @Component({
   selector: 'app-detalle-pedido',
   standalone: true,
-  imports: [CommonModule, ToastNotificationComponent],
+  imports: [CommonModule, ToastNotificationComponent, InformacionPedidoComponent, HttpClientModule],
   templateUrl: './detalle-pedido.component.html',
-  styleUrl: './detalle-pedido.component.css'
+  styleUrl: './detalle-pedido.component.css',
+  providers: [DetallePedidoService],
 })
 export class DetallePedidoComponent implements OnInit {
 
-  codigoRastreo: string;
+  pedidoId: string;
   pedido: PedidoDTO;
+  paquetes: PaqueteDTO[] = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private location: Location,
+    private readonly route: ActivatedRoute,
+    private readonly location: Location,
+    private readonly detallePedidoService: DetallePedidoService,
   ) { }
 
-  ngOnInit(): void {
-    this.codigoRastreo = String(this.route.snapshot.paramMap.get('codigoRastreo'));
-    this.pedido = this.obtenerOrdenByCodigoRastreo(this.codigoRastreo);
+  ngOnInit() {
+    this.pedidoId = String(this.route.snapshot.paramMap.get('pedidoId'));
+    this.obtenerOrdenByCodigoRastreo(this.pedidoId);
   }
 
-  obtenerOrdenByCodigoRastreo(codigoRastreo: string): PedidoDTO {
-    return {
-      id: '1',
-      codigoRastreo: codigoRastreo,
-      tienda: {
-        id: '1',
-        nombre: 'Abarrotes Emir',
-        telefono: '(644) 195 1272'
+  async obtenerOrdenByCodigoRastreo(pedidoId: string) {
+    this.detallePedidoService.obtenerPedidoByPedidoId(pedidoId).subscribe({
+      next: (pedido: PedidoDTO) => {
+        this.pedido = pedido;
+        Array.prototype.push.apply(this.paquetes, pedido.paquetes);
       },
-      repartidor: {
-        id: '1',
-        nombre: 'Patito El repartidor'
-      },
-      paquetes: [
-        // { id: '1', gramaje: { id: '1', gramaje: 500 }, cantidad: 3 },
-        // { id: '1', gramaje: { id: '1', gramaje: 500 }, cantidad: 3 },
-        // { id: '1', gramaje: { id: '1', gramaje: 500 }, cantidad: 3 },
-        // { id: '1', gramaje: { id: '1', gramaje: 500 }, cantidad: 3 },
-      ]
-    }
+      error: (error) => {
+        console.error(error);
+      }
+    })
   }
 
   volverPagina(): void {

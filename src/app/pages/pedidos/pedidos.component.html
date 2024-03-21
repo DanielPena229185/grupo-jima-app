@@ -51,7 +51,7 @@
                     <!-- row -->
                     <app-pedidos-pendientes-item
                         class="flex w-full  py-[17px] px-[64px] justify-between items-center border-t-[1px] border-[#B1B1B1] hover:bg-selectedItem cursor-pointer"
-                        [pedido]="pedido" *ngFor="let pedido of pedidos" (click)="goToDetallePedido(pedido)"></app-pedidos-pendientes-item>
+                        *ngFor="let pedido of pedidos" [pedido]="pedido" (click)="goToDetallePedido(pedido)"></app-pedidos-pendientes-item>
                 </div>
             </div>
         </div>
