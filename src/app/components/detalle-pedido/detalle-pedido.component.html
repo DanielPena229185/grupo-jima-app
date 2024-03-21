@@ -1,4 +1,4 @@
-<div class=" flex w-full max-w-[1448px] flex-col justify-center p-[64px] gap-[32px] items-center">
+<div class="flex flex-col justify-center p-[64px] gap-[32px] items-center">
     <div class="flex items-center justify-start w-full space-x-4">
         <div class="cursor-pointer rounded hover:bg-selectedItem" (click)="volverPagina()">
             <svg class="w-[40px] h-[40px] text-gray-800 dark:text-white" aria-hidden="true"
@@ -8,7 +8,7 @@
             </svg>
         </div>
         <h1 class="text-[40px] tracking-[10px] uppercase">Pedido</h1>
-    </div>    
+    </div>
     <hr class="w-full border-1 border-green-200" />
     <div class="flex justify-between items-center self-stretch">
         <!-- lista productos -->
@@ -25,41 +25,18 @@
             </div>
             <!-- body -->
             <div class="flex flex-col divide-y divide-gray-200 py-[12px] px-0 items-center gap-[18px] self-stretch">
+                <div *ngIf="pedido.paquetes.length === 0" >
+                    <p class="font-light text-center text-[24px]">No hay paquetes en el pedido</p>
+                </div>
                 <!-- row -->
-                <div class="flex py-0 px-[48px] justify-between items-center self-stretch">
+                <div class="flex py-0 px-[48px] justify-between items-center self-stretch"
+                    *ngFor="let paquete of pedido.paquetes">
                     <!-- cell -->
                     <div class="flex w-[130px] justify-center items-start gap-[10px]">
-                        <p class="text-[24px] font-semibold capitalize text-[#717171]">500gr</p>
+                        <p class="text-[24px] font-semibold capitalize text-[#717171]">{{paquete.gramaje.gramaje}}gr</p>
                     </div>
                     <div class="flex w-[130px] justify-center items-start gap-[10px]">
-                        <p class="text-[24px] font-semibold capitalize text-[#717171]">3</p>
-                    </div>
-                </div>
-                <div class="flex py-0 px-[48px] justify-between items-center self-stretch">
-                    <!-- cell -->
-                    <div class="flex w-[130px] justify-center items-start gap-[10px]">
-                        <p class="text-[24px] font-semibold capitalize text-[#717171]">500gr</p>
-                    </div>
-                    <div class="flex w-[130px] justify-center items-start gap-[10px]">
-                        <p class="text-[24px] font-semibold capitalize text-[#717171]">3</p>
-                    </div>
-                </div>
-                <div class="flex py-0 px-[48px] justify-between items-center self-stretch">
-                    <!-- cell -->
-                    <div class="flex w-[130px] justify-center items-start gap-[10px]">
-                        <p class="text-[24px] font-semibold capitalize text-[#717171]">500gr</p>
-                    </div>
-                    <div class="flex w-[130px] justify-center items-start gap-[10px]">
-                        <p class="text-[24px] font-semibold capitalize text-[#717171]">3</p>
-                    </div>
-                </div>
-                <div class="flex py-0 px-[48px] justify-between items-center self-stretch">
-                    <!-- cell -->
-                    <div class="flex w-[130px] justify-center items-start gap-[10px]">
-                        <p class="text-[24px] font-semibold capitalize text-[#717171]">500gr</p>
-                    </div>
-                    <div class="flex w-[130px] justify-center items-start gap-[10px]">
-                        <p class="text-[24px] font-semibold capitalize text-[#717171]">3</p>
+                        <p class="text-[24px] font-semibold capitalize text-[#717171]">{{paquete.cantidad}}</p>
                     </div>
                 </div>
             </div>
@@ -113,16 +90,15 @@
                     class="flex py-[10px] px-[30px] text-center text-[32px] capitalize  items-center gap-[10px] border-[1px] border-[#E01C1C] text-[#E01C1C]">
                     Cancelar
                 </button>
-                <button type="button"
+                <button type="button" (click)="finalizarPedido()"
                     class="flex py-[10px] px-[30px] text-center text-[32px] capitalize rounded-[5px] items-center gap-[10px] text-[#FFFF] bg-primary">
                     Finalizar
                 </button>
             </div>
         </div>
-
     </div>
     <!-- progress -->
-    <div class="relative mx-auto flex w-[1448px] py-0 px-[164px] justify-between self-stretch items-center">
+    <!-- <div class="relative mx-auto flex w-[1448px] py-0 px-[164px] justify-between self-stretch items-center">
 
         <div class="flex flex-col items-center justify-center">
             <div class="rounded-full bg-primary flex p-[15px] flex-col justify-center items-center gap-[10px]">
@@ -164,11 +140,11 @@
                         d="M42.277 10.8064C43.0743 11.6037 43.0743 12.8964 42.277 13.6937L19.8187 36.1521C19.0214 36.9494 17.7286 36.9494 16.9313 36.1521L6.72299 25.9437C5.92567 25.1464 5.92567 23.8537 6.72299 23.0564C7.52031 22.259 8.81302 22.259 9.61034 23.0564L18.375 31.821L39.3897 10.8064C40.187 10.009 41.4797 10.009 42.277 10.8064Z"
                         fill="white" />
                 </svg>
+                <p>Finalizado</p>
             </div>
-            <p class="text-center text-[14px] font-light">Finalizado</p>
         </div>
         <div class="-z-50 absolute left-[204px] top-[40px] w-[1050px] bg-lightbg rounded-full h-[12px]">
             <div class="left-[204px] top-[40px] w-[1050px] h-[12px]  bg-primary rounded-full" style="width: 50%"></div>
         </div>
-    </div>
+    </div> -->
 </div>
