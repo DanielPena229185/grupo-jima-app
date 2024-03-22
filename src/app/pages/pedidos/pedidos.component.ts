@@ -5,11 +5,12 @@ import { PedidosPendientesItemComponent } from '../../components/pedidos-pendien
 import { Router } from '@angular/router';
 import { PedidosService } from './pedidos.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-pedidos',
   standalone: true,
-  imports: [CommonModule, PedidosPendientesItemComponent, HttpClientModule],
+  imports: [CommonModule, PedidosPendientesItemComponent, HttpClientModule, AppComponent],
   templateUrl: './pedidos.component.html',
   styleUrl: './pedidos.component.css',
   providers: [PedidosService]

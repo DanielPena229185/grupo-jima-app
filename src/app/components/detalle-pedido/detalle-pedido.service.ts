@@ -17,4 +17,12 @@ export class DetallePedidoService {
   obtenerPedidoByPedidoId(pedidoId: string): Observable<PedidoDTO>{
     return this.http.get<PedidoDTO>(`${enviroment.apiUrl}/pedido/${pedidoId}`);
   }
+
+  cancelarPedido(pedidoId: string, pedido: PedidoDTO): Observable<PedidoDTO>{
+    return this.http.patch<PedidoDTO>(`${enviroment.apiUrl}/pedido/${pedidoId}/cancelar`, pedido);
+  }
+
+  finalizarPedido(pedidoId: string, pedido: PedidoDTO): Observable<PedidoDTO>{
+    return this.http.patch<PedidoDTO>(`${enviroment.apiUrl}/pedido/${pedidoId}/finalizar`, pedido);
+  }
 }

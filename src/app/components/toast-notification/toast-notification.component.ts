@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastNotificationConfiguration } from './toast-notification.types';
+import { NotificacionToast, TextoColor, TipoNotificacion } from './toast-notification.types';
+import { ToastNotificationService } from './toast-notification.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-toast-notification',
@@ -9,19 +11,48 @@ import { ToastNotificationConfiguration } from './toast-notification.types';
   templateUrl: './toast-notification.component.html',
   styleUrl: './toast-notification.component.css'
 })
-export class ToastNotificationComponent {
+export class ToastNotificationComponent implements OnInit {
 
-  notificaciones: ToastNotificationConfiguration[] = [
-    {message: 'Hola Mundo', color: 'bg-primary'},
-    {message: 'Adios Mundo', color: 'bg-primary'},
-  ];
+  notificaciones: NotificacionToast[] = [];
+  private subscription: Subscription;
 
-  constructor(){
+  constructor(private readonly toastService: ToastNotificationService) {
 
   }
 
-  notificar(message: string, tipoMensaje: string){
-    this.notificaciones.push({message, color: tipoMensaje})
+  ngOnInit(): void {
+    this.suscribirseNotificaciones();
   }
 
+  private suscribirseNotificaciones() {
+    this.subscription = this.toastService.notificacionCambio.subscribe({
+      next: (notificacion: NotificacionToast) => {
+        if (!notificacion.textColor) {
+          notificacion.textColor = this.getTextColor(notificacion.tipo);
+        }
+        this.notificaciones.push(notificacion);
+        if (this.notificaciones.length === 5) {
+          this.eliminarPrimeraNotificacion();
+        } else {
+          setTimeout(() => {
+            this.eliminarPrimeraNotificacion();
+          }, notificacion.tiempo);
+        }
+      }
+    })
+  }
+
+  private eliminarPrimeraNotificacion() {
+    this.notificaciones.pop();
+  }
+
+  getTextColor(tipoNotificacion: TipoNotificacion): TextoColor {
+    if (tipoNotificacion === (TipoNotificacion.COMPLETADO || TipoNotificacion.ERROR)) {
+      return TextoColor.BLANCO;
+    }
+    if (tipoNotificacion === TipoNotificacion.PRECAUSION) {
+      return TextoColor.NEGRO;
+    }
+    return TextoColor.BLANCO;
+  }
 }

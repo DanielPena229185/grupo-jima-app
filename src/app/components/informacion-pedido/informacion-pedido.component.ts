@@ -17,6 +17,5 @@ export class InformacionPedidoComponent implements OnInit{
   @Input() tortilleria: TortilleriaDTO;
 
   ngOnInit(): void {
-    console.log(this.codigoRastreo);
   }
 }

@@ -1,5 +1,8 @@
-<div class="bg-gray-800 text-white rounded my-5"> <!-- Contenedor de la lista de toasts -->
-    <div class="p-4 {{notification.color}} rounded-md mb-5 w-44 text-center" *ngFor="let notification of notificaciones"> <!-- Toast 1 -->
-        {{notification.message}}
+<div *ngFor="let notificacion of notificaciones">
+    <div class="hidden bg-success bg-danger bg-warning text-blanco text-negro"></div>
+    <div id="toast-success"
+        class="left-[10px] flex items-center w-full max-w-xs p-4 mb-4 bg-{{notificacion.tipo}} text-gray-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 "
+        role="alert">
+        <div class="text-sm font-medium text-{{notificacion.textColor}}">{{notificacion.message}}</div>
     </div>
 </div>

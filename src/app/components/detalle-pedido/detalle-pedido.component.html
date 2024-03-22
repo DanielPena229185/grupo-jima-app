@@ -33,7 +33,8 @@
                     *ngFor="let paquete of paquetes">
                     <!-- cell -->
                     <div class="flex w-[130px] justify-center items-start gap-[10px]">
-                        <p class="text-[24px] font-semibold capitalize text-[#717171]">{{paquete.producto.gramaje.gramaje}}gr</p>
+                        <p class="text-[24px] font-semibold capitalize text-[#717171]">
+                            {{paquete.producto.gramaje.gramaje}}gr</p>
                     </div>
                     <div class="flex w-[130px] justify-center items-start gap-[10px]">
                         <p class="text-[24px] font-semibold capitalize text-[#717171]">{{paquete.cantidad}}</p>
@@ -45,18 +46,17 @@
         <hr class="h-full border-[1px] border-white">
         <!-- info -->
         <div class="flex w-[539px] h-[727px] py-[39px] px-0 flex-col justify-between items-end">
-            <app-informacion-pedido
-                [codigoRastreo]="pedido.codigoRastreo"
-                [tienda]="pedido.tienda"
-                [repartidor]="pedido.repartidor"
-                [tortilleria]="pedido.tortilleria"></app-informacion-pedido>
+            <div *ngIf="pedido">
+                <app-informacion-pedido [codigoRastreo]="pedido.codigoRastreo" [tienda]="pedido.tienda"
+                    [repartidor]="pedido.repartidor" [tortilleria]="pedido.tortilleria"></app-informacion-pedido>
+            </div>
             <!-- buttons -->
             <div class="flex h-[96px] justify-center items-center gap-[23px] shrink-0">
-                <button type="button"
+                <button type="button" (click)="cancelarPedido(pedido.id)"
                     class="flex py-[10px] px-[30px] text-center text-[32px] capitalize  items-center gap-[10px] border-[1px] border-[#E01C1C] text-[#E01C1C]">
                     Cancelar
                 </button>
-                <button type="button" (click)="finalizarPedido()"
+                <button type="button" (click)="finalizarPedido(pedido.id)"
                     class="flex py-[10px] px-[30px] text-center text-[32px] capitalize rounded-[5px] items-center gap-[10px] text-[#FFFF] bg-primary">
                     Finalizar
                 </button>

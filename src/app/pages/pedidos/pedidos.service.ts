@@ -14,7 +14,7 @@ export class PedidosService {
   ) { }
 
   obtenerPedidosPendientes(parametrosBusqueda: ParametrosBusquedaDTO): Observable<PedidoDTO[]> {
-    return this.http.get<PedidoDTO[]>(`${enviroment.apiUrl}/pedido/pendientes/tienda/${enviroment.tortilleriaId}`)
+    return this.http.get<PedidoDTO[]>(`${enviroment.apiUrl}/pedido/${enviroment.tortilleriaId}/pendiente`)
       .pipe(
         map((pedidos: PedidoDTO[]) => {
           return pedidos.map(pedido => {

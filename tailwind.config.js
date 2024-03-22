@@ -7,6 +7,11 @@ module.exports = {
       primary:'#01A85A',
       ligthbg:'#F4F3F3',
       selectedItem: '#F5F5F5',
+      success: '#2dd55b',
+      danger: '#c5000f',
+      warning: '#ffc409',
+      blanco: '#FFFF',
+      negro: '#0000'
     }
   },
   plugins: [],

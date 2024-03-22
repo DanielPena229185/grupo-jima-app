@@ -6,6 +6,8 @@ import { InformacionPedidoComponent } from '../informacion-pedido/informacion-pe
 import { HttpClientModule } from '@angular/common/http';
 import { DetallePedidoService } from './detalle-pedido.service';
 import { PaqueteDTO, PedidoDTO } from './detalle-pedido.types';
+import { ToastNotificationService } from '../toast-notification/toast-notification.service';
+import { TiempoNotificacion, TipoNotificacion } from '../toast-notification/toast-notification.types';
 
 @Component({
   selector: 'app-detalle-pedido',
@@ -25,6 +27,7 @@ export class DetallePedidoComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly location: Location,
     private readonly detallePedidoService: DetallePedidoService,
+    private readonly notificationService: ToastNotificationService
   ) { }
 
   ngOnInit() {
@@ -48,6 +51,35 @@ export class DetallePedidoComponent implements OnInit {
     this.location.back();
   }
 
-  finalizarPedido() {
+  finalizarPedido(pedidoId: string, pedido = this.pedido) {
+    this.detallePedidoService.finalizarPedido(pedidoId, pedido).subscribe({
+      next: (pedido: PedidoDTO) => {
+        this.notificationService.addNotificacion({
+          message: 'Se finalizó el pedido con éxito',
+          tiempo: TiempoNotificacion.LARGO,
+          tipo: TipoNotificacion.ERROR
+        })
+        this.volverPagina();
+      },
+      error: (error) => {
+        this.notificationService.addNotificacion({
+          message: 'Algo salió mal, intente más tarde',
+          tiempo: TiempoNotificacion.CORTO,
+          tipo: TipoNotificacion.ERROR
+        })
+      }
+    })
+  }
+
+  cancelarPedido(pedidoId: string, pedido = this.pedido) {
+    this.detallePedidoService.cancelarPedido(pedidoId, pedido).subscribe({
+      next: (pedido: PedidoDTO) => {
+        console.log('Se canceló el pedido');
+        this.volverPagina();
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
   }
 }
