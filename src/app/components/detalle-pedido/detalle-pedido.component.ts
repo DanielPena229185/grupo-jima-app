@@ -52,7 +52,7 @@ export class DetallePedidoComponent implements OnInit {
       },
       error: (error) => {
         this.notificationService.addNotificacion({
-          mensaje: `Algo salió mal al cargar los paquetes del pedido, intente más tarde`,
+          mensaje: `Algo salió mal al cargar los paquetes del pedido, intente nuevamente`,
           tiempo: 5000,
           tipo: TipoNotificacion.ERROR
         })
@@ -77,7 +77,7 @@ export class DetallePedidoComponent implements OnInit {
       },
       error: (error) => {
         this.notificationService.addNotificacion({
-          mensaje: 'Algo salió mal al finalizar el pedido, intente más tarde',
+          mensaje: 'Algo salió mal al finalizar el pedido, intente nuevamente',
           tiempo: 5000,
           tipo: TipoNotificacion.ERROR
         })
@@ -97,7 +97,7 @@ export class DetallePedidoComponent implements OnInit {
       },
       error: (error) => {
         this.notificationService.addNotificacion({
-          mensaje: 'Algo salió mal al cancelar el pedido, intente más tarde',
+          mensaje: 'Algo salió mal al cancelar el pedido, intente nuevamente',
           tiempo: 5000,
           tipo: TipoNotificacion.ERROR
         })

@@ -7,6 +7,8 @@ import { PedidosService } from './pedidos.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from '../../app.component';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
+import { ToastNotificationService } from '../../components/toast-notification/toast-notification.service';
+import { TipoNotificacion } from '../../components/toast-notification/toast-notification.types';
 
 @Component({
   selector: 'app-pedidos',
@@ -31,6 +33,7 @@ export class PedidosComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly pedidoService: PedidosService,
+    private readonly notificationService: ToastNotificationService
   ) { }
 
   ngOnInit(): void {
@@ -42,10 +45,15 @@ export class PedidosComponent implements OnInit {
     this.pedidoService.obtenerPedidosPendientes(parametrosBusqueda).subscribe({
       next: (response: PedidoDTO[]) => {
         Array.prototype.push.apply(this.pedidos, response);
+        
         this.mostrarSpinner = false;
       },
       error: (error) => {
-        console.log(error);
+        this.notificationService.addNotificacion({
+          mensaje: 'Algo salió mal al querer cargar los pedidos, intente nuevamente',
+          tiempo: 5000,
+          tipo: TipoNotificacion.ERROR
+        })
         this.mostrarSpinner = false;
       }
     })
