@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NotificacionToast, TextoColor, TipoNotificacion } from './toast-notification.types';
+import { NotificacionToast, TipoNotificacion } from './toast-notification.types';
 import { ToastNotificationService } from './toast-notification.service';
 import { Subscription } from 'rxjs';
 
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class ToastNotificationComponent implements OnInit {
 
-  notificaciones: NotificacionToast[] = [];
+  notificaciones: Toast[] = [];
   private subscription: Subscription;
 
   constructor(private readonly toastService: ToastNotificationService) {
@@ -27,10 +27,13 @@ export class ToastNotificationComponent implements OnInit {
   private suscribirseNotificaciones() {
     this.subscription = this.toastService.notificacionCambio.subscribe({
       next: (notificacion: NotificacionToast) => {
-        if (!notificacion.textColor) {
-          notificacion.textColor = this.getTextColor(notificacion.tipo);
+        const toast: Toast = {
+          mensaje: notificacion.mensaje,
+          background: notificacion.tipo,
+          textContrast: this.getContrastColor(notificacion.tipo)
+          
         }
-        this.notificaciones.push(notificacion);
+        this.notificaciones.push(toast);
         if (this.notificaciones.length === 5) {
           this.eliminarPrimeraNotificacion();
         } else {
@@ -43,16 +46,22 @@ export class ToastNotificationComponent implements OnInit {
   }
 
   private eliminarPrimeraNotificacion() {
-    this.notificaciones.pop();
+    this.notificaciones.shift();
   }
 
-  getTextColor(tipoNotificacion: TipoNotificacion): TextoColor {
+  getContrastColor(tipoNotificacion: TipoNotificacion): string {
     if (tipoNotificacion === (TipoNotificacion.COMPLETADO || TipoNotificacion.ERROR)) {
-      return TextoColor.BLANCO;
+      return 'blanco';
     }
     if (tipoNotificacion === TipoNotificacion.PRECAUSION) {
-      return TextoColor.NEGRO;
+      return 'negro';
     }
-    return TextoColor.BLANCO;
+    return 'blanco';
   }
+}
+
+interface Toast {
+  mensaje: string,
+  background: string,
+  textContrast: string
 }

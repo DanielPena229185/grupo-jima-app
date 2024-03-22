@@ -11,7 +11,8 @@ module.exports = {
       danger: '#c5000f',
       warning: '#ffc409',
       blanco: '#FFFF',
-      negro: '#0000'
+      negro: '#000000',
+      gris: '#f6f8fc'
     }
   },
   plugins: [],

@@ -1,8 +1,8 @@
 <div *ngFor="let notificacion of notificaciones">
     <div class="hidden bg-success bg-danger bg-warning text-blanco text-negro"></div>
-    <div id="toast-success"
-        class="left-[10px] flex items-center w-full max-w-xs p-4 mb-4 bg-{{notificacion.tipo}} text-gray-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 "
+    <div id="toast"
+        class="left-[10px] flex items-center w-full max-w-xs p-4 mb-4 bg-{{notificacion.background}} text-gray-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 pointer-events-none"
         role="alert">
-        <div class="text-sm font-medium text-{{notificacion.textColor}}">{{notificacion.message}}</div>
+        <div class="text-sm font-medium text-{{notificacion.textContrast}}">{{notificacion.mensaje}}</div>
     </div>
 </div>

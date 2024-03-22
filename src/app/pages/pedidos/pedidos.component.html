@@ -49,6 +49,7 @@
                         </div>
                     </div>
                     <!-- row -->
+                    <app-spinner [mostrarSpinner]="mostrarSpinner"></app-spinner>
                     <app-pedidos-pendientes-item
                         class="flex w-full  py-[17px] px-[64px] justify-between items-center border-t-[1px] border-[#B1B1B1] hover:bg-selectedItem cursor-pointer"
                         *ngFor="let pedido of pedidos" [pedido]="pedido" (click)="goToDetallePedido(pedido)"></app-pedidos-pendientes-item>
@@ -56,7 +57,7 @@
             </div>
         </div>
         <!-- pagination -->
-        <div class="flex p-[10px] justify-center gap-[10px] self-stretch items-center">
+        <!-- <div class="flex p-[10px] justify-center gap-[10px] self-stretch items-center">
             <div class="flex justify-center items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
                     <path
@@ -107,6 +108,6 @@
                         fill="#01A85A" />
                 </svg>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

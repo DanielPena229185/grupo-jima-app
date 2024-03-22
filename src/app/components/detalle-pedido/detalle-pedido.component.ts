@@ -7,18 +7,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { DetallePedidoService } from './detalle-pedido.service';
 import { PaqueteDTO, PedidoDTO } from './detalle-pedido.types';
 import { ToastNotificationService } from '../toast-notification/toast-notification.service';
-import { TiempoNotificacion, TipoNotificacion } from '../toast-notification/toast-notification.types';
+import { TipoNotificacion } from '../toast-notification/toast-notification.types';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
   selector: 'app-detalle-pedido',
   standalone: true,
-  imports: [CommonModule, ToastNotificationComponent, InformacionPedidoComponent, HttpClientModule],
+  imports: [
+    CommonModule, 
+    ToastNotificationComponent, 
+    InformacionPedidoComponent, 
+    HttpClientModule, 
+    SpinnerComponent
+  ],
   templateUrl: './detalle-pedido.component.html',
   styleUrl: './detalle-pedido.component.css',
   providers: [DetallePedidoService],
 })
 export class DetallePedidoComponent implements OnInit {
 
+  mostrarSpinner: boolean = true;
   pedidoId: string;
   pedido: PedidoDTO;
   paquetes: PaqueteDTO[] = [];
@@ -40,9 +48,15 @@ export class DetallePedidoComponent implements OnInit {
       next: (pedido: PedidoDTO) => {
         this.pedido = pedido;
         Array.prototype.push.apply(this.paquetes, pedido.paquetes);
+        this.mostrarSpinner = false;
       },
       error: (error) => {
-        console.error(error);
+        this.notificationService.addNotificacion({
+          mensaje: `Algo salió mal al cargar los paquetes del pedido, intente más tarde`,
+          tiempo: 5000,
+          tipo: TipoNotificacion.ERROR
+        })
+        this.mostrarSpinner = false;
       }
     })
   }
@@ -55,16 +69,16 @@ export class DetallePedidoComponent implements OnInit {
     this.detallePedidoService.finalizarPedido(pedidoId, pedido).subscribe({
       next: (pedido: PedidoDTO) => {
         this.notificationService.addNotificacion({
-          message: 'Se finalizó el pedido con éxito',
-          tiempo: TiempoNotificacion.LARGO,
-          tipo: TipoNotificacion.ERROR
+          mensaje: 'Se finalizó el pedido con éxito',
+          tiempo: 5000,
+          tipo: TipoNotificacion.COMPLETADO
         })
         this.volverPagina();
       },
       error: (error) => {
         this.notificationService.addNotificacion({
-          message: 'Algo salió mal, intente más tarde',
-          tiempo: TiempoNotificacion.CORTO,
+          mensaje: 'Algo salió mal al finalizar el pedido, intente más tarde',
+          tiempo: 5000,
           tipo: TipoNotificacion.ERROR
         })
       }
@@ -74,11 +88,19 @@ export class DetallePedidoComponent implements OnInit {
   cancelarPedido(pedidoId: string, pedido = this.pedido) {
     this.detallePedidoService.cancelarPedido(pedidoId, pedido).subscribe({
       next: (pedido: PedidoDTO) => {
-        console.log('Se canceló el pedido');
+        this.notificationService.addNotificacion({
+          mensaje: 'Se canceló el pedido con éxito',
+          tiempo: 5000,
+          tipo: TipoNotificacion.COMPLETADO
+        })
         this.volverPagina();
       },
       error: (error) => {
-        console.error(error);
+        this.notificationService.addNotificacion({
+          mensaje: 'Algo salió mal al cancelar el pedido, intente más tarde',
+          tiempo: 5000,
+          tipo: TipoNotificacion.ERROR
+        })
       }
     })
   }

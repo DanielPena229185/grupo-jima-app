@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { NotificacionToast } from './toast-notification.types';
 import { Subject } from 'rxjs';
+import { NotificacionToast } from './toast-notification.types';
 
 @Injectable({
   providedIn: 'root'

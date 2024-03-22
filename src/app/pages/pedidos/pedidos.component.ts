@@ -6,17 +6,25 @@ import { Router } from '@angular/router';
 import { PedidosService } from './pedidos.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from '../../app.component';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
   selector: 'app-pedidos',
   standalone: true,
-  imports: [CommonModule, PedidosPendientesItemComponent, HttpClientModule, AppComponent],
+  imports: [
+    CommonModule, 
+    PedidosPendientesItemComponent, 
+    HttpClientModule, 
+    AppComponent,
+    SpinnerComponent
+  ],
   templateUrl: './pedidos.component.html',
   styleUrl: './pedidos.component.css',
   providers: [PedidosService]
 })
 export class PedidosComponent implements OnInit {
 
+  mostrarSpinner: boolean = true;
   parametrosBusqueda: ParametrosBusquedaDTO;
   pedidos: PedidoDTO[] = [];
 
@@ -34,9 +42,11 @@ export class PedidosComponent implements OnInit {
     this.pedidoService.obtenerPedidosPendientes(parametrosBusqueda).subscribe({
       next: (response: PedidoDTO[]) => {
         Array.prototype.push.apply(this.pedidos, response);
+        this.mostrarSpinner = false;
       },
       error: (error) => {
         console.log(error);
+        this.mostrarSpinner = false;
       }
     })
   }

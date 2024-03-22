@@ -25,10 +25,11 @@
             </div>
             <!-- body -->
             <div class="flex flex-col divide-y divide-gray-200 py-[12px] px-0 items-center gap-[18px] self-stretch">
-                <div *ngIf="paquetes.length === 0">
+                <div *ngIf="paquetes.length === 0 && !mostrarSpinner">
                     <p class="font-light text-center text-[24px]">No hay paquetes en el pedido</p>
                 </div>
                 <!-- row -->
+                <app-spinner [mostrarSpinner]="mostrarSpinner"></app-spinner>
                 <div class="flex py-0 px-[48px] justify-between items-center self-stretch"
                     *ngFor="let paquete of paquetes">
                     <!-- cell -->
