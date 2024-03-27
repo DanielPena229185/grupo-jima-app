@@ -9,6 +9,9 @@ import { PaqueteDTO, ParametrosBusquedaDTO, PedidoDTO } from './detalle-pedido.t
 import { ToastNotificationService } from '../toast-notification/toast-notification.service';
 import { TipoNotificacion } from '../toast-notification/toast-notification.types';
 import { SpinnerComponent } from '../spinner/spinner.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogoConfirmacionComponent } from '../dialogo-confirmacion/dialogo-confirmacion.component';
+import { DialogRespuesta } from '../dialogo-confirmacion/dialogo-confirmacion.types';
 
 @Component({
   selector: 'app-detalle-pedido',
@@ -35,7 +38,8 @@ export class DetallePedidoComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly location: Location,
     private readonly detallePedidoService: DetallePedidoService,
-    private readonly notificationService: ToastNotificationService
+    private readonly notificationService: ToastNotificationService,
+    private readonly dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -73,7 +77,7 @@ export class DetallePedidoComponent implements OnInit {
     this.location.back();
   }
 
-  finalizarPedido(pedidoId: string, pedido = this.pedido) {
+  private finalizar(pedidoId: string, pedido = this.pedido) {
     this.detallePedidoService.finalizarPedido(pedidoId, pedido).subscribe({
       next: (pedido: PedidoDTO) => {
         this.notificationService.addNotificacion({
@@ -93,7 +97,7 @@ export class DetallePedidoComponent implements OnInit {
     })
   }
 
-  cancelarPedido(pedidoId: string, pedido = this.pedido) {
+  private cancelar(pedidoId: string, pedido = this.pedido) {
     this.detallePedidoService.cancelarPedido(pedidoId, pedido).subscribe({
       next: (pedido: PedidoDTO) => {
         this.notificationService.addNotificacion({
@@ -109,6 +113,36 @@ export class DetallePedidoComponent implements OnInit {
           tiempo: 5000,
           tipo: TipoNotificacion.ERROR
         })
+      }
+    })
+  }
+
+  finalizarPedido(pedidoId: string): void {
+    const dialogRef = this.dialog.open(DialogoConfirmacionComponent, {
+      data: {
+        titulo: 'Finalizar Pedido',
+        contenido: '¿Seguro que desea finalizar el pedido?'
+      }
+    });
+    dialogRef.afterClosed().subscribe((resultado) => {
+      const respuesta: DialogRespuesta = resultado.data.dialogRespuesta;
+      if(respuesta === DialogRespuesta.CONFIRMAR){
+        this.finalizar(pedidoId);
+      }
+    })
+  }
+
+  cancelarPedido(pedidoId: string): void {
+    const dialogRef = this.dialog.open(DialogoConfirmacionComponent, {
+      data: {
+        titulo: 'Cancelar Pedido',
+        contenido: '¿Seguro que desea cancelar el pedido?'
+      }
+    });
+    dialogRef.afterClosed().subscribe((resultado) => {
+      const respuesta: DialogRespuesta = resultado.data.dialogRespuesta;
+      if(respuesta === DialogRespuesta.CONFIRMAR){
+        this.cancelar(pedidoId);
       }
     })
   }
