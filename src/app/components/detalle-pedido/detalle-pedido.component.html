@@ -25,7 +25,7 @@
             </div>
             <!-- body -->
             <div class="flex flex-col divide-y divide-gray-200 py-[12px] px-0 items-center gap-[18px] self-stretch">
-                <div *ngIf="paquetes.length === 0 && !mostrarSpinner">
+                <div *ngIf="paquetes.length === 0">
                     <p class="font-light text-center text-[24px]">No hay paquetes en el pedido</p>
                 </div>
                 <!-- row -->
@@ -34,11 +34,11 @@
                     *ngFor="let paquete of paquetes">
                     <!-- cell -->
                     <div class="flex w-[130px] justify-center items-start gap-[10px]">
-                        <p class="text-[24px] font-semibold capitalize text-[#717171]">
-                            {{paquete.producto.gramaje.gramaje}}gr</p>
+                        <p class="text-[24px] font-semibold text-[#717171]">
+                            {{paquete.producto.gramaje.gramaje}} gr</p>
                     </div>
                     <div class="flex w-[130px] justify-center items-start gap-[10px]">
-                        <p class="text-[24px] font-semibold capitalize text-[#717171]">{{paquete.cantidad}}</p>
+                        <p class="text-[24px] font-semibold text-[#717171]">{{paquete.cantidad}}</p>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     [repartidor]="pedido.repartidor" [tortilleria]="pedido.tortilleria"></app-informacion-pedido>
             </div>
             <!-- buttons -->
-            <div class="flex h-[96px] justify-center items-center gap-[23px] shrink-0">
+            <div *ngIf="pedido" class="flex h-[96px] justify-center items-center gap-[23px] shrink-0">
                 <button type="button" (click)="cancelarPedido(pedido.id)"
                     class="flex py-[10px] px-[30px] text-center text-[32px] capitalize  items-center gap-[10px] border-[1px] border-[#E01C1C] text-[#E01C1C]">
                     Cancelar

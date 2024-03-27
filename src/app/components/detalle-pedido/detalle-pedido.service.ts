@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PedidoDTO } from './detalle-pedido.types';
+import { ParametrosBusquedaDTO, PedidoDTO } from './detalle-pedido.types';
 import { enviroment } from '../../../enviroments/enviroment';
 
 @Injectable({
@@ -14,15 +14,15 @@ export class DetallePedidoService {
   ) { }
 
 
-  obtenerPedidoByPedidoId(pedidoId: string): Observable<PedidoDTO>{
-    return this.http.get<PedidoDTO>(`${enviroment.apiUrl}/pedido/${pedidoId}`);
+  obtenerPedidoByPedidoId(parametrosBusqueda: ParametrosBusquedaDTO, pedidoId: string): Observable<PedidoDTO> {
+    return this.http.get<PedidoDTO>(`${enviroment.apiUrl}/pedido/${pedidoId}`, { params: <any>parametrosBusqueda });
   }
 
-  cancelarPedido(pedidoId: string, pedido: PedidoDTO): Observable<PedidoDTO>{
+  cancelarPedido(pedidoId: string, pedido: PedidoDTO): Observable<PedidoDTO> {
     return this.http.patch<PedidoDTO>(`${enviroment.apiUrl}/pedido/${pedidoId}/cancelar`, pedido);
   }
 
-  finalizarPedido(pedidoId: string, pedido: PedidoDTO): Observable<PedidoDTO>{
+  finalizarPedido(pedidoId: string, pedido: PedidoDTO): Observable<PedidoDTO> {
     return this.http.patch<PedidoDTO>(`${enviroment.apiUrl}/pedido/${pedidoId}/finalizar`, pedido);
   }
 }

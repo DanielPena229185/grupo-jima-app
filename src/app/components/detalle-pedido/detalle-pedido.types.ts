@@ -1,45 +1,46 @@
+export interface ParametrosBusquedaDTO {
+    campos: string,
+    relaciones: string
+}
+
 export interface PedidoDTO {
     id: string,
     codigoRastreo: string,
-    numeroRecorrido: number,
     detalles: string,
-    estado: string,
-    fechaHoraCreacion: string,
-    fechaHoraActualizado: string,
     total: number,
-    repartidor: RepartidorDTO,
-    tortilleria: TortilleriaDTO,
-    tienda: TiendaDTO,
-    paquetes: PaqueteDTO[]
+    tienda: TiendaDTO;
+    repartidor: RepartidorDTO;
+    tortilleria: TortilleriaDTO;
+    paquetes: PaqueteDTO[];
 }
 
-export interface RepartidorDTO {
+interface TiendaDTO {
+    id: string,
+    nombre: string,
+    telefono: string
+}
+
+interface RepartidorDTO {
+    id: string,
     nombres: string,
     apellidos: string
 }
 
-export interface TortilleriaDTO {
-    nombre: string
-}
-
-export interface TiendaDTO {
-    telefono: string,
+interface TortilleriaDTO {
+    id: string,
     nombre: string
 }
 
 export interface PaqueteDTO {
     id: string,
     cantidad: number,
-    producto: ProductoDTO,
+    producto: ProductoDTO;
 }
 
-export interface ProductoDTO {
-    id: string,
-    precio: number,
-    gramaje: GramajeDTO,
+interface ProductoDTO {
+    gramaje: GramajeDTO
 }
 
-export interface GramajeDTO {
-    id: string,
-    gramaje: string
+interface GramajeDTO {
+    gramaje: number
 }
