@@ -7,7 +7,5 @@ export interface PedidoDTO {
 
 interface TiendaDTO {
     id: string,
-    telefono: string,
-    nombre: string,
-    direccion: string,
+    nombre: string
 }

@@ -1,7 +1,14 @@
-export interface ParametrosBusquedaDTO {
+export interface parametrosBusquedaDTO {
+    pagina: number,
     cantidad: number,
-    pagina: number, 
+    ordenamiento: string,
+    campos: string,
+    relaciones: string,
+    codigoRastreo: string,
+    detalles: string,
+    nombreTienda: string,
 }
+
 export interface PedidoDTO {
     id: string,
     codigoRastreo: string,
@@ -11,7 +18,5 @@ export interface PedidoDTO {
 
 interface TiendaDTO {
     id: string,
-    telefono: string,
-    nombre: string,
-    direccion: string,
+    nombre: string
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { ParametrosBusquedaDTO, PedidoDTO } from './pedidos.types';
+import { PedidoDTO, parametrosBusquedaDTO } from './pedidos.types';
 import { HttpClient } from '@angular/common/http';
 import { enviroment } from '../../../enviroments/enviroment';
 
@@ -13,8 +13,8 @@ export class PedidosService {
     private readonly http: HttpClient
   ) { }
 
-  obtenerPedidosPendientes(parametrosBusqueda: ParametrosBusquedaDTO): Observable<PedidoDTO[]> {
-    return this.http.get<PedidoDTO[]>(`${enviroment.apiUrl}/pedido/${enviroment.tortilleriaId}/pendiente`)
+  obtenerPedidosPendientes(parametrosBusqueda: parametrosBusquedaDTO): Observable<PedidoDTO[]> {
+    return this.http.get<PedidoDTO[]>(`${enviroment.apiUrl}/pedido/${enviroment.tortilleriaId}/pendiente`, { params: <any>parametrosBusqueda })
       .pipe(
         map((pedidos: PedidoDTO[]) => {
           return pedidos.map(pedido => {

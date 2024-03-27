@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PedidoDTO } from './pedidos-pendientes-item.types';
 import { CommonModule } from '@angular/common';
+import { PedidoDTO } from './pedidos-pendientes-item.types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pedidos-pendientes-item',
@@ -9,11 +10,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './pedidos-pendientes-item.component.html',
   styleUrl: './pedidos-pendientes-item.component.css'
 })
-export class PedidosPendientesItemComponent implements OnInit{
-  
+export class PedidosPendientesItemComponent {
+
   @Input() pedido: PedidoDTO;
   
-  ngOnInit() {
-    
-  }
 }
