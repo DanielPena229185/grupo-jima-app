@@ -14,7 +14,7 @@
         <!-- lista productos -->
         <div class="flex w-[507px] py-[50px] px-[10px] flex-col items-center gap-[10px] self-stretch">
             <!-- header -->
-            <div class="flex pt-0 px-[48px] pb-[13px] justify-between items-center self-stretch">
+            <div class="flex pt-0 px-[10px] pb-[13px] justify-between items-center self-stretch">
                 <!-- cell -->
                 <div class="flex w-[130px] justify-center items-start gap-[10px]">
                     <p class="capitalize font-semibold text-center text-[32px]">Gramaje</p>
@@ -30,7 +30,7 @@
                 </div>
                 <!-- row -->
                 <app-spinner [mostrarSpinner]="mostrarSpinner"></app-spinner>
-                <div class="flex py-0 px-[48px] justify-between items-center self-stretch"
+                <div class="flex py-0 px-[10px] justify-between items-center self-stretch"
                     *ngFor="let paquete of paquetes">
                     <!-- cell -->
                     <div class="flex w-[130px] justify-center items-start gap-[10px]">
@@ -42,7 +42,19 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <!-- Detalles -->
+        <div class="max-w-xs self-stretch py-[50px] px-[10px]" *ngIf="pedido.detalles">
+            <!-- Header -->
+            <div>
+                <div>
+                    <h1 class="capitalize font-semibold text-[32px]">Detalles</h1>
+                </div>
+            </div>
+            <!-- Content -->
+            <div>
+                <p class="font-light text-[20px]">{{pedido.detalles}}</p>
+            </div>
         </div>
         <hr class="h-full border-[1px] border-white">
         <!-- info -->
@@ -54,64 +66,14 @@
             <!-- buttons -->
             <div *ngIf="pedido" class="flex h-[96px] justify-center items-center gap-[23px] shrink-0">
                 <button type="button" (click)="cancelarPedido(pedido.id)"
-                    class="flex py-[10px] px-[30px] text-center text-[32px] capitalize  items-center gap-[10px] border-[1px] border-[#E01C1C] text-[#E01C1C]">
+                    class="flex py-[10px] px-[30px] text-center text-[32px] capitalize rounded-[5px] items-center gap-[10px] border-[1px] border-[#E01C1C] text-[#E01C1C] hover:bg-[#E01C1C] hover:text-blanco">
                     Cancelar
                 </button>
                 <button type="button" (click)="finalizarPedido(pedido.id)"
-                    class="flex py-[10px] px-[30px] text-center text-[32px] capitalize rounded-[5px] items-center gap-[10px] text-[#FFFF] bg-primary">
+                    class="flex py-[10px] px-[30px] text-center text-[32px] capitalize rounded-[5px] items-center gap-[10px] text-primary border-[1px] border-primary hover:bg-primary hover:text-blanco">
                     Finalizar
                 </button>
             </div>
         </div>
     </div>
-    <!-- progress -->
-    <!-- <div class="relative mx-auto flex w-[1448px] py-0 px-[164px] justify-between self-stretch items-center">
-
-        <div class="flex flex-col items-center justify-center">
-            <div class="rounded-full bg-primary flex p-[15px] flex-col justify-center items-center gap-[10px]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="49" height="49" viewBox="0 0 49 49" fill="none">
-                    <g clip-path="url(#clip0_31_29)">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M2.04167 0C0.914085 0 0 0.914085 0 2.04167C0 3.16925 0.914085 4.08333 2.04167 4.08333H8.53481L10.2327 12.5666C10.2418 12.6247 10.2533 12.682 10.2671 12.7384L13.6775 29.7773C13.9578 31.1866 14.725 32.4542 15.8443 33.3552C16.9585 34.2522 18.3513 34.7307 19.781 34.7083H39.5907C41.0204 34.7307 42.4132 34.2522 43.5274 33.3552C44.6471 32.4538 45.4142 31.1873 45.6942 29.7773L45.6972 29.762L48.9639 12.6325C49.0778 12.0348 48.9193 11.4174 48.5314 10.9485C48.1436 10.4797 47.5668 10.2083 46.9583 10.2083H13.925L12.2103 1.64098C12.0193 0.686786 11.1814 0 10.2083 0H2.04167ZM14.7423 14.2917H44.4905L41.6878 28.9884C41.5934 29.4557 41.3384 29.8754 40.9668 30.1745C40.5936 30.4749 40.1265 30.6346 39.6475 30.6254L39.6083 30.625H19.7633L19.7242 30.6254C19.2451 30.6346 18.7781 30.4749 18.4048 30.1745C18.0316 29.874 17.7759 29.4518 17.6826 28.9818L14.7423 14.2917Z"
-                            fill="white" />
-                        <path
-                            d="M14.2917 42.875C14.2917 40.6198 16.1198 38.7917 18.375 38.7917C20.6302 38.7917 22.4583 40.6198 22.4583 42.875C22.4583 45.1302 20.6302 46.9583 18.375 46.9583C16.1198 46.9583 14.2917 45.1302 14.2917 42.875Z"
-                            fill="white" />
-                        <path
-                            d="M36.75 42.875C36.75 40.6198 38.5782 38.7917 40.8333 38.7917C43.0885 38.7917 44.9167 40.6198 44.9167 42.875C44.9167 45.1302 43.0885 46.9583 40.8333 46.9583C38.5782 46.9583 36.75 45.1302 36.75 42.875Z"
-                            fill="white" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_31_29">
-                            <rect width="49" height="49" fill="white" />
-                        </clipPath>
-                    </defs>
-                </svg>
-            </div>
-            <p class="text-center text-[14px] font-light">Pedido</p>
-        </div>
-        <div class=" flex flex-col items-center justify-center">
-            <div class="rounded-full bg-primary flex p-[15px] flex-col justify-center items-center gap-[10px]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="49" height="50" viewBox="0 0 49 50" fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M24.5 2.5459C23.4265 2.5459 22.3719 2.82803 21.4419 3.36397L14.9171 7.09242C14.488 7.17729 14.0878 7.39891 13.7865 7.73846L7.1537 11.5286L7.14581 11.5332C6.39039 11.9693 5.7389 12.5605 5.23285 13.2654C5.10967 13.3886 5.00037 13.5298 4.90899 13.6877C4.83028 13.8238 4.76903 13.9651 4.72454 14.1092C4.30451 14.9534 4.08428 15.8849 4.08331 16.8313V33.1688C4.08442 34.2429 4.36795 35.2978 4.90548 36.2277C5.443 37.1577 6.21562 37.9299 7.14581 38.4669L7.1537 38.4715L21.4375 46.6336L21.4413 46.6358C22.0889 47.0091 22.7969 47.2593 23.5297 47.3768C23.8183 47.533 24.1488 47.6217 24.5 47.6217C24.8512 47.6217 25.1817 47.533 25.4703 47.3768C26.2031 47.2593 26.9112 47.009 27.5588 46.6357L27.5625 46.6336L41.8463 38.4715L41.8541 38.4669C42.7843 37.9299 43.557 37.1577 44.0945 36.2277C44.632 35.2978 44.9155 34.2429 44.9166 33.1688V16.8313C44.9157 15.8851 44.6955 14.9537 44.2756 14.1096C44.2311 13.9654 44.1698 13.8239 44.091 13.6877C43.9996 13.5296 43.8902 13.3884 43.7669 13.2651C43.2609 12.5604 42.6095 11.9692 41.8542 11.5331L27.5625 3.36649L27.5582 3.36404C26.6281 2.82805 25.5735 2.5459 24.5 2.5459ZM26.5416 42.514L39.8125 34.9307L39.8157 34.9288C40.1243 34.7499 40.3807 34.4932 40.5593 34.1843C40.7384 33.8743 40.8329 33.5227 40.8333 33.1646V17.9309L26.5416 26.1981V42.514ZM22.4583 26.1981L8.16665 17.9308V33.1655C8.16717 33.5232 8.26167 33.8745 8.4407 34.1843C8.61926 34.4932 8.87563 34.7499 9.18426 34.9288L9.18748 34.9307L22.4583 42.514V26.1981ZM25.5287 6.90729L38.7121 14.4406L33.6981 17.341L19.5202 9.16506L23.4713 6.90729L23.4791 6.90276C23.7895 6.72357 24.1416 6.62923 24.5 6.62923C24.8584 6.62923 25.2104 6.72357 25.5208 6.90276L25.5287 6.90729ZM24.5 22.6618L29.6175 19.7015L15.4145 11.5111L10.2879 14.4406L24.5 22.6618Z"
-                        fill="white" />
-                </svg>
-            </div>
-            <p class="text-center text-[14px] font-light">En Progreso</p>
-        </div>
-        <div class=" flex flex-col items-center justify-center">
-            <div class="rounded-full bg-primary700] flex p-[15px] flex-col justify-center items-center gap-[10px]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="49" height="49" viewBox="0 0 49 49" fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M42.277 10.8064C43.0743 11.6037 43.0743 12.8964 42.277 13.6937L19.8187 36.1521C19.0214 36.9494 17.7286 36.9494 16.9313 36.1521L6.72299 25.9437C5.92567 25.1464 5.92567 23.8537 6.72299 23.0564C7.52031 22.259 8.81302 22.259 9.61034 23.0564L18.375 31.821L39.3897 10.8064C40.187 10.009 41.4797 10.009 42.277 10.8064Z"
-                        fill="white" />
-                </svg>
-                <p>Finalizado</p>
-            </div>
-        </div>
-        <div class="-z-50 absolute left-[204px] top-[40px] w-[1050px] bg-lightbg rounded-full h-[12px]">
-            <div class="left-[204px] top-[40px] w-[1050px] h-[12px]  bg-primary rounded-full" style="width: 50%"></div>
-        </div>
-    </div> -->
 </div>
