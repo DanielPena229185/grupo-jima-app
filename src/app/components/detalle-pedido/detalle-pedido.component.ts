@@ -1,6 +1,6 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastNotificationComponent } from '../toast-notification/toast-notification.component';
 import { InformacionPedidoComponent } from '../informacion-pedido/informacion-pedido.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -39,7 +39,8 @@ export class DetallePedidoComponent implements OnInit {
     private readonly location: Location,
     private readonly detallePedidoService: DetallePedidoService,
     private readonly notificationService: ToastNotificationService,
-    private readonly dialog: MatDialog
+    private readonly dialog: MatDialog,
+    private readonly router: Router,
   ) { }
 
   ngOnInit() {
@@ -50,7 +51,7 @@ export class DetallePedidoComponent implements OnInit {
 
   iniciarParametrosBusqueda() {
     this.parametrosBusqueda = {
-      campos: 'id,codigoRastreo,detalles,total,tienda,repartidor,tortilleria,paquetes',
+      campos: 'id,codigoRastreo,estado,detalles,total,tienda,repartidor,tortilleria,paquetes',
       relaciones: 'tienda,repartidor,tortilleria,paquetes,paquetes.producto,paquetes.producto.gramaje'
     }
   }
@@ -58,6 +59,14 @@ export class DetallePedidoComponent implements OnInit {
   async obtenerOrdenByCodigoRastreo(parametrosBusqueda: ParametrosBusquedaDTO = this.parametrosBusqueda, pedidoId: string) {
     this.detallePedidoService.obtenerPedidoByPedidoId(parametrosBusqueda, pedidoId).subscribe({
       next: (pedido: PedidoDTO) => {
+        if(pedido.estado !== 'pendiente'){
+          this.router.navigate(['/pedidos']);
+          this.notificationService.addNotificacion({
+            mensaje: `El detalle de este pedido ya no se puede visualizar`,
+            tiempo: 5000,
+            tipo: TipoNotificacion.PRECAUSION
+          });
+        }
         this.pedido = pedido;
         Array.prototype.push.apply(this.paquetes, pedido.paquetes);
         this.mostrarSpinner = false;
@@ -69,6 +78,7 @@ export class DetallePedidoComponent implements OnInit {
           tipo: TipoNotificacion.ERROR
         })
         this.mostrarSpinner = false;
+        this.router.navigate(['/pedidos']);
       }
     })
   }

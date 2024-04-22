@@ -6,6 +6,7 @@ export interface ParametrosBusquedaDTO {
 export interface PedidoDTO {
     id: string,
     codigoRastreo: string,
+    estado: string,
     detalles: string,
     total: number,
     tienda: TiendaDTO;
