@@ -1,0 +1,63 @@
+
+<div class="registrar-tienda">
+    <div class="form">
+        <div class="form-group">
+            <div class="form-header border-b border-gray-300 border-primary">
+                <p>Registrar una nueva tienda</p>
+            </div>
+            <form class="form-container">
+                <div class="datos-tienda">
+                    <div class="input-text">
+                        <label for="nombre">Nombre de la tienda</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre de la tienda"
+                            autocomplete="off" [(ngModel)]="nombreTienda">
+                    </div>
+                    <div class="input-text">
+                        <label for="telefono">Teléfono de la tienda</label>
+                        <input type="text" id="telefono" name="telefono" placeholder="Teléfono de la tienda"
+                            autocomplete="off" [(ngModel)]="telefonoTienda">
+                    </div>
+                    <div class="input-text">
+                        <label for="telefono">Dirección de la tienda</label>
+                        <textarea type="text" id="direccion" name="direccion" placeholder="Dirección de la tienda"
+                            autocomplete="off" [(ngModel)]="direccionTienda"></textarea>
+                    </div>
+                </div>
+            </form>
+            <button class="boton-registrar" (click)="registrarTienda()">Registrar</button>
+        </div>
+    </div>
+    <div class="elegir-repartidor">
+        <div class="contenido-elegir-repartidor">
+            <div class="titulo">
+                <p>Selecciona Repartidor</p>
+            </div>
+            <div class="repartidores">
+                <div class="item-repartidor" *ngFor="let repartidor of repartidores">
+                    <input type="radio" [id]="repartidor.id" [name]="'repartidorGroup'" [value]="repartidor.id"
+                        [(ngModel)]="repartidorSeleccionado">
+                    <label [for]="repartidor.id">{{ repartidor.nombres }} {{ repartidor.apellidos }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="paginacion">
+            <div class="atras" (click)="removePage()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#01A85A">
+                    <path d="M16.5 12h-9m3.5 3.5L7.5 12 11 8.5" />
+                    <circle cx="12" cy="12" r="9" />
+                </svg>
+            </div>
+            <div>
+                <p>{{sarchParams.pagina+1}}</p>
+            </div>
+            <div class="adelante" (click)="addPage()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#01A85A">
+                    <path d="M7.5 12h9M13 8.5l3.5 3.5-3.5 3.5" />
+                    <circle cx="12" cy="12" r="9" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>

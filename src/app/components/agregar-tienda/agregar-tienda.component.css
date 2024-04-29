@@ -1,0 +1,106 @@
+.registrar-tienda {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form-header>p {
+    color: #01A85A;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.input-text {
+    display: flex;
+    flex-direction: column;
+    font-size: larger;
+    padding: 10px 0px;
+}
+
+.input-text>input {
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
+.input-text>textarea {
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
+.elegir-repartidor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 25%;
+}
+
+.contenido-elegir-repartidor {
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido-elegir-repartidor>.titulo {
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+    color: #01A85A;
+}
+
+.boton-registrar {
+    background-color: #01A85A;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.boton-registrar:hover {
+    background-color: #02904e;
+}
+
+.boton-registrar:active {
+    background-color: #00c76a;
+}
+
+.item-repartidor {
+    display: flex;
+    /* Add card styles */
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin-top: 20px;   
+}
+
+.item-repartidor > label{
+    padding: 0px 5px;
+}
+
+.paginacion{ 
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-bottom: 40px;
+}
+
+.paginacion > div:hover{
+    cursor: pointer;
+}
+

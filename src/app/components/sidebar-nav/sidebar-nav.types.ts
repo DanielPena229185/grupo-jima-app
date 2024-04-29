@@ -7,7 +7,7 @@ export interface Opcion{
 export enum TiposOpciones{
     INICIO = "inicio",
     PEDIDOS = "pedidos",
-    CLIENTES = "clientes",
+    TIENDAS = "clientes",
     TORTILLERIAS = "tortillerias",
     PRODUCTOS = "productos",
     CONFIGURACION = "configuracion",

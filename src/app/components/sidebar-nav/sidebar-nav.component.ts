@@ -18,7 +18,7 @@ export class SidebarNavComponent {
   opcionesPaginas: Array<Opcion> = [
     { nombre: 'Inicio', opcion: TiposOpciones.INICIO, icono: `${enviroment.icons}/inicio.icon.svg` },
     { nombre: 'Pedidos', opcion: TiposOpciones.PEDIDOS, icono: `${enviroment.icons}/pedidos.icon.svg` },
-    { nombre: 'Clientes', opcion: TiposOpciones.CLIENTES, icono: `${enviroment.icons}/clientes.icon.svg` },
+    { nombre: 'Tiendas', opcion: TiposOpciones.TIENDAS, icono: `${enviroment.icons}/tienda.icon.svg` },
     { nombre: 'Tortillerias', opcion: TiposOpciones.TORTILLERIAS, icono: `${enviroment.icons}/tortillerias.icon.svg` },
     { nombre: 'Productos', opcion: TiposOpciones.PRODUCTOS, icono: `${enviroment.icons}/productos.icon.svg` },
   ];
@@ -38,8 +38,8 @@ export class SidebarNavComponent {
         case TiposOpciones.PEDIDOS:
           this.router.navigate(['/pedidos']);
         return;
-        case TiposOpciones.CLIENTES:
-          this.router.navigate(['/clientes']);
+        case TiposOpciones.TIENDAS:
+          this.router.navigate(['/tiendas']);
         return;
         case TiposOpciones.TORTILLERIAS:
           this.router.navigate(['/tortillerias']);
