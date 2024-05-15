@@ -1,0 +1,36 @@
+<div class="py-10">
+    <div class="grid grid-cols-2 gap-4">
+        <div>
+            <h2 class="text-xl font-bold mb-4 text-primary">Lista de tiendas</h2>
+            <div class="overflow-y-auto max-h-screen">
+                <ul>
+                    <li *ngFor="let tienda of tiendas" class="mb-2">
+                        <div class="rounded p-4 shadow-md">
+                            <h3 class="text-lg font-bold">{{ tienda.nombre }}</h3>
+                            <p class="text-gray-600">{{ tienda.telefono }}</p>
+                            <p class="text-gray-600">{{ tienda.direccion }}</p>
+                            <button (click)="seleccionarTienda(tienda)" class="bg-primary text-white px-4 py-2 rounded mt-2 text-blanco">Editar</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="px-10">
+            <h2 class="text-center text-xl font-bold mb-4 text-primary">Detalles de la tienda seleccionada</h2>
+            <div class="mb-4 flex flex-col">
+            <label for="nombre" class="font-bold">Nombre:</label>
+            <input type="text" id="nombre" [(ngModel)]="tiendaSeleccionada.nombre" class="border border-gray-300 rounded px-2 py-1">
+            </div>
+            <div class="mb-4 flex flex-col">
+            <label for="telefono" class="font-bold">Teléfono:</label>
+            <input type="text" id="telefono" [(ngModel)]="tiendaSeleccionada.telefono" class="border border-gray-300 rounded px-2 py-1">
+            </div>
+            <div class="mb-4 flex flex-col">
+            <label for="direccion" class="font-bold">Dirección:</label>
+            <input type="text" id="direccion" [(ngModel)]="tiendaSeleccionada.direccion" class="border border-gray-300 rounded px-2 py-1">
+            </div>
+            <button (click)="limpiarCampos()" class="bg-warning text-blanco px-4 py-2 rounded mt-2 mr-2">Limpiar</button>
+            <button (click)="actualizarTienda()" class="bg-primary text-blanco px-4 py-2 rounded mt-2 mr-2">Actualizar</button>
+        </div>
+        </div>
+</div>
