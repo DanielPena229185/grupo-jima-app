@@ -1,30 +1,66 @@
 
 <div class="registrar-tienda">
-    <div class="form">
-        <div class="form-group">
-            <div class="form-header border-b border-gray-300 border-primary">
-                <p>Registrar una nueva tienda</p>
-            </div>
-            <form class="form-container">
-                <div class="datos-tienda">
-                    <div class="input-text">
-                        <label for="nombre">Nombre de la tienda</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombre de la tienda"
-                            autocomplete="off" [(ngModel)]="nombreTienda">
-                    </div>
-                    <div class="input-text">
-                        <label for="telefono">Teléfono de la tienda</label>
-                        <input type="text" id="telefono" name="telefono" placeholder="Teléfono de la tienda"
-                            autocomplete="off" [(ngModel)]="telefonoTienda">
-                    </div>
-                    <div class="input-text">
-                        <label for="telefono">Dirección de la tienda</label>
-                        <textarea type="text" id="direccion" name="direccion" placeholder="Dirección de la tienda"
-                            autocomplete="off" [(ngModel)]="direccionTienda"></textarea>
-                    </div>
+    <div class="registrar-content">
+        <div class="form form-tienda">
+            <div class="form-group">
+                <div class="form-header border-b border-gray-300 border-primary">
+                    <p>Registrar una nueva tienda</p>
                 </div>
-            </form>
-            <button class="boton-registrar" (click)="registrarTienda()">Registrar</button>
+                <form class="form-container">
+                    <div class="datos-tienda">
+                        <div class="input-text">
+                            <label for="nombre">Nombre de la tienda</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Nombre de la tienda"
+                                autocomplete="off" [(ngModel)]="nombreTienda">
+                        </div>
+                        <div class="input-text">
+                            <label for="telefono">Teléfono de la tienda</label>
+                            <input type="text" id="telefono" name="telefono" placeholder="Teléfono de la tienda"
+                                autocomplete="off" [(ngModel)]="telefonoTienda">
+                        </div>
+                        <div class="input-text">
+                            <label for="telefono">Dirección de la tienda</label>
+                            <textarea type="text" id="direccion" name="direccion" placeholder="Dirección de la tienda"
+                                autocomplete="off" [(ngModel)]="direccionTienda"></textarea>
+                        </div>
+                    </div>
+                </form>
+                <button class="boton-registrar" (click)="registrarTienda()">Registrar</button>
+            </div>
+        </div>
+        <div class="registrar-productos">
+            <div class="form-header border-b border-gray-300 border-primary">
+                <p>Agrega Productos</p>
+            </div>
+            <div class="gramajes">
+                <div class="gramajes-disponibles">
+                    <p>Gramajes disponibles</p>
+                </div>
+                <div class="gramajes-opciones">
+                    <p class="gramaje-opcion" *ngFor="let gramaje of gramajes">{{gramaje.gramaje}}gr</p>
+                </div>
+                <label for="gramaje">Gramaje</label>
+                <div class="input-text">
+                    <input type="text" placeholder="Indica el gramaje" [(ngModel)]="gramajeSeleccionado" name="gramaje">
+                </div>
+            </div>
+            <div class="precio">
+                <label for="precio">Precio</label>
+                <div class="input-text">
+                    <input type="text" placeholder="Indica el precio" [(ngModel)]="precioSeleccionado" name="precio">
+                </div>
+            </div>
+            <button class="boton-registrar" (click)="agregarProducto()">Agregar</button>
+            <div class="gramajes-disponibles mt-2 border-t border-gray-300 border-primary">
+                <p>Productos agregados</p>
+            </div>
+            <div *ngIf="productos.length !== 0" class="productos-agregados">
+                <div class="producto" *ngFor="let producto of productos">
+                    <div class="producto-item" >{{producto.gramajeDTO.gramaje}}gr</div>
+                    <div class="producto-item">${{producto.precio}}</div>
+                    <button class="boton-revertir" (click)="revertirProducto(producto)">Cancelar</button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="elegir-repartidor">

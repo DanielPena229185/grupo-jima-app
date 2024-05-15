@@ -18,6 +18,7 @@ export interface RegistrarTiendaDTO{
     repartidorId: string;
     tortilleriaId: string;
     direccion: string;
+    productos: ProductoDTO[];
 }
 
 export interface TiendaDTO {
@@ -25,4 +26,14 @@ export interface TiendaDTO {
     nombre: string;
     telefono: string;
     direccion: string;
+}
+
+export interface ProductoDTO{
+    precio: number;
+    gramajeDTO: GramajeDTO;
+}
+
+export interface GramajeDTO{
+    id: string;
+    gramaje: number;
 }
